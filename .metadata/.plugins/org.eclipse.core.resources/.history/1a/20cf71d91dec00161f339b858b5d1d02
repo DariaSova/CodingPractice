@@ -1,0 +1,47 @@
+import java.util.*;
+
+public class Alphabet {
+	
+	class Vertex{
+		char letter;
+		ArrayList<Vertex> incoming;
+		ArrayList<Vertex> outgoing;
+		
+		public Vertex(char c){
+			letter = c;
+			incoming = new ArrayList<Vertex>();
+			outgoing = new ArrayList<Vertex>();
+		}
+		
+		void addIncoming(Vertex in){
+			incoming.add(in);
+		}
+		
+		void addOutgoing(Vertex in){
+			outgoing.add(in);
+		}
+		
+	}
+	
+	class Graph{
+		Set<Vertex> vertices;
+		public Graph(){
+			vertices = new HashSet<Vertex>();
+		}
+		
+		void removeVertex(Vertex v){
+			for(Vertex out: v.outgoing){
+				out.incoming.remove(v);
+			}
+			vertices.remove(v);
+		}
+	}
+	
+	
+	
+	
+	public static void main(String[] args){
+		
+	}
+
+}

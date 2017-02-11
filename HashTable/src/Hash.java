@@ -75,3 +75,31 @@ public class Hash {
 		findValue(123);
 	}
 }
+
+
+double pathHelper(CostFn costfn, int n, int r, int c, double minCost){
+	if(r == n-1 && c== n-1)
+		return minCost;
+
+	double rCost =0;
+double dCost =0;
+
+	if(c+1 < n){
+	 	rCost = costfn.Cost(r, c, right)  + pathHelper(costfn, n, r, c+1, minCost +costfn.Cost(r, c, right));
+	}
+	id(r+1 < n) {
+		dCost = pathHelper(costfn, n, r+1, c, minCost + costfn.Cost(r, c, down);
+}
+
+
+double min =0;
+if( rCost == 0 && dCost >0)
+	min = dCost;
+else if ( dCost == 0 && rCost >0)
+      min = rCost;
+else
+		min = Math.min(r , d);
+	
+	return min;
+
+}

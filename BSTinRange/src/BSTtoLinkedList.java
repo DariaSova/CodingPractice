@@ -46,20 +46,9 @@ public class BSTtoLinkedList {
 				newRoot = newRoot.r;
 				current = current.r;
 			}
-		}
-		
-		
-		
-//		traverseBST(root.l, root);
-//		root,r= head;
-//		root = head;
-//		traverseBST(root.r, root);
-		
-		
-		
+		}	
 		return null;
 	}
-	
 	
 	public static void main(String[] args){
 		Node root = new Node(10);
@@ -70,13 +59,8 @@ public class BSTtoLinkedList {
 		root.l.l.r.l = new Node(-1);
 		root.l.r = new Node(6);
 		root.l.r.r = new Node(8);
-		root.r.r= new Node(40);
-		
-		
+		root.r.r= new Node(40);	
 //		Node current;
-		traverseBST(root);
-		
-		
+		traverseBST(root);	
 	}
-
 }

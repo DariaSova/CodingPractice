@@ -1,0 +1,74 @@
+import java.util.*;
+
+public class StringPalindroms {
+	
+	static boolean isPalindrome(String s){
+		int j = s.length()-1;
+		char[] chars = s.toCharArray();
+		for(int i=0; i<s.length()/2; i++){
+			if(chars[i]!=chars[j])
+				return false;
+			j--;
+		}
+		
+		return true;
+	}
+	
+	static int allPalindromes(String[] words){
+		int count =0;
+		Map<String, String> set = new HashMap<String, String>();
+		
+		for(int i=0; i<words.length; i++){
+			String curr = words[i];
+			StringBuilder reversed = new StringBuilder(curr).reverse();
+			if(set.containsKey(reversed.toString()))
+				count++;
+			set.put(curr, "");
+			///seperate function
+			for(int j=1; j< curr.length(); j++){
+				String left = curr.substring(0, j);
+				String right = curr.substring(j);
+				if(isPalindrome(left)){
+					String rev = new StringBuilder(right).reverse().toString();
+					if(set.containsKey(rev)&&set.get(rev)=="")
+						count++;
+					set.put(right, left);
+				}
+				if(isPalindrome(right)) {
+					String rev = new StringBuilder(left).reverse().toString();
+					if(set.containsKey(rev)&&set.get(rev)=="")
+						count++;
+					set.put(left, right);
+				}
+			}
+		}
+		return count;
+	}
+	
+	static int findPalindromes(String[] words){
+		int count =0;
+		Set<String> set = new HashSet<String>();
+		
+		for(int i=0; i<words.length; i++){
+			String curr = words[i];
+			StringBuilder reversed = new StringBuilder(curr).reverse();
+			if(set.contains(reversed.toString()))
+				count++;
+			set.add(curr);
+		}
+		return count;
+	}
+	
+	
+	
+	public static void main(String[] args){
+		String[] words = {"abc", "cat", "cd", "tac", "car", "rac", "mk", "cba", "cba"}; //2possible palindromes
+		System.out.println(findPalindromes(words));
+		String[] otherWords = {"abc", "ba", "cb", "cat", "ta", "atmmmmmm"};
+		String[] w3 = {"abc", "ba", "cat", "ta", "atmmmmmm"};
+		String[] w4 = {"ba", "ta", "a"};
+		System.out.println(allPalindromes(otherWords));
+		System.out.println(allPalindromes(w4));
+	}
+
+}

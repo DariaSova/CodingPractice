@@ -10,6 +10,24 @@ public class FindDuplicates {
 			next = null;
 		}
 	}
+	
+	public static class LinkedList {
+		public Node head;
+		
+		public LinkedList() {
+			head = null;
+		}
+		
+		public void addNode(int n) {
+			if(head == null){
+				head = new Node(n);
+			}else{
+				while(head.next!=null)
+					head=head.next;
+				head.next = new Node(n);
+			}		
+		}
+	}
 
 	static Node removeDuplicates(Node head){
 		HashSet<Integer> hs = new HashSet<Integer>();
@@ -108,6 +126,47 @@ public class FindDuplicates {
 		return null;
 	}
 	
+	static Node findIntersection(Node l1, Node l2){
+		int len1 =0;
+		int len2 =0;
+		
+		Node h1 = l1;
+		Node h2 = l2;
+		
+		while(l1.next != null){
+			len1++;
+			l1 = l1.next;
+		}
+		
+		while(l2.next != null){
+			len2++;
+			l2 = l2.next;
+		}
+		
+		if(l1 != l2)
+			return null;
+		
+		if(len1!=len2){
+			if(len1>len2){
+				for(int i = 0; i< len1-len2; i++){
+					h1 = h1.next;
+				}
+			}else{
+				for(int i = 0; i< len2-len1; i++){
+					h2 = h2.next;
+				}
+			}
+				
+		}
+		
+		while(h1!=h2){
+			h1 = h1.next;
+			h2 = h2.next;
+		}
+		
+		return h1;
+	}
+	
 	
 	public static void main(String[] args){
 		Node n = new Node(1);
@@ -147,6 +206,25 @@ public class FindDuplicates {
 //	}
 		Node res5 = findLoop(n);
 		System.out.println(res5.x);
+		
+//		LinkedList l1 = new LinkedList();
+//		LinkedList l2 = new LinkedList();
+//		l1.addNode(5);
+//		l1.addNode(9);
+		Node intersection = new Node(7);
+		intersection.next = new Node(2);
+		intersection.next.next = new Node(1);
+		
+		Node l1 = new Node(1);
+		l1.next = new Node(5);
+		l1.next.next = new Node(9);
+		l1.next.next.next = intersection;
+		
+		Node l2 = new Node(4);
+		l2.next = new Node(6);
+		l2.next.next = intersection;
+		
+		System.out.println("INTERSECT AT: " + findIntersection(l2, l1).x);
 		
 	}
 }
