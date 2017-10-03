@@ -1,0 +1,68 @@
+import java.util.*;
+
+public class Spaces {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int width = sc.nextInt();
+		int n = sc.nextInt();
+		int[] nums = new int[n+2];
+		Set<Integer> set = new HashSet<Integer>();
+		
+		nums[0] = 0;
+		nums[n+1] = width;
+		
+		for(int i=1; i<n-1; i++){
+			nums[i] = sc.nextInt();
+			set.add(nums[i]);
+		}
+		
+//		int [] gaps = new int[n-1];
+//		int k=0;
+//		for(int i=1; i<n; i++){
+//			gaps[k] = nums[i]-nums[i-1];
+//			set.add(gaps[k]);
+//			k++;
+//		}
+//		
+//		for(int i=0; i<n-1; i++){
+//			for(int j=i+1; j<n-1;j++){
+//				if(gaps[i]+gaps[i+1]<width) set.add(gaps[i]+gaps[i+1]);
+//			}
+//		}
+//		
+		for(int i=0; i<n+2; i++){
+			for(int j=n+1; j>i;j--){
+				set.add(nums[i]-nums[j]);
+			}
+		}
+		System.out.println(set);
+	}
+}
+
+
+
+//Scanner sc = new Scanner(new BufferedInputStream(System.in));
+//int width = sc.nextInt();
+//
+//int[] partitions = new int[sc.nextInt() + 2];
+//partitions[0] = 0;
+//for (int i = 1; i < partitions.length - 1; i++) {
+//    partitions[i] = sc.nextInt();
+//}
+//partitions[partitions.length - 1] = width;
+//
+//BitSet sizes = new BitSet(width);
+//for (int i = 0; i < partitions.length - 1; i++) {
+//    for (int j = i + 1; j < partitions.length; j++) {
+//        sizes.set(partitions[j] - partitions[i]);
+//    }
+//}
+//
+//for (int i = 0; i <= width; i++) {
+//    if (sizes.get(i)) {
+//        System.out.print(i);
+//        System.out.print(' ');
+//    }
+//}
+

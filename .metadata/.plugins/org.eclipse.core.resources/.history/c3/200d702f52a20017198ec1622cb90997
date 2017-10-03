@@ -1,0 +1,16 @@
+import java.util.*;
+
+public class PhoneNumberFormatter {
+	
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		String input = sc.nextLine();
+		
+		input.replace("+", "");
+		String[] arr = input.split("[-\\.-\\\\s(\\\\s\\()]");
+		
+		System.out.println(arr);
+	}
+
+}

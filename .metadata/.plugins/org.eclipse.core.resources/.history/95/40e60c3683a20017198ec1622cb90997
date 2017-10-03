@@ -1,0 +1,89 @@
+import java.util.*;
+
+public class Squawk {
+	static class Node{
+		int name;
+		ArrayList<Node> friends;
+		public Node(int n){
+			name = n;
+			friends = new ArrayList<Node>();
+				
+		}
+	}
+	
+ public static void main(String[] args) {
+	 int usersNum, linksNum, startUser, time; 
+	 
+	 Scanner sc = new Scanner(System.in);
+	 usersNum =  sc.nextInt();
+	 linksNum = sc.nextInt();
+	 startUser = sc.nextInt();
+	 time = sc.nextInt(); 
+	 
+	 Node[] graph = new Node[usersNum];
+//	 HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+	 for(int i=0; i<usersNum; i++){
+		 graph[i] = new Node(i);
+//		 hm.put(i, 0);
+	 }
+	 
+	 for(int i=0; i<linksNum; i++){
+		 int a = sc.nextInt();
+		 int b = sc.nextInt();
+		 graph[a].friends.add(graph[b]);
+		 graph[b].friends.add(graph[a]);
+	 }
+	 
+//	 Queue<Node> q = new PriorityQueue<Node>();  
+//	 q.add(graph[startUser]);
+//	 int count = 0;
+//	 
+//	 //keep rack of iterations
+//	 while(count<time){
+//		 count++;
+//		 Queue<Node> nextq = new LinkedList<Node>();
+//		 while(!q.isEmpty()){
+//			 Node curr = q.remove();
+//			 for(Node n: curr.friends)
+//				 nextq.add(n);
+//		 }
+//		 q = nextq;
+//	 }
+//	 System.out.println(q.size());
+	 
+	 
+	 //Another implementation
+	 HashMap<Integer, Integer> infected = new HashMap<Integer, Integer>();
+	 
+
+	 
+	 infected.put(startUser, 1);
+	 
+	 for(int i=0; i<time; i++){
+		 HashMap<Integer, Integer> nInfected = new HashMap<Integer, Integer>();
+//	     Iterator<Integer> itr = infected.keySet().iterator();
+//	     while (itr.hasNext()) {
+//	    	 int k = itr.next();
+//	    	 ArrayList<Node> adj = graph[k].friends;
+//			 for(Node n: adj){
+//				 nInfected.put(n.name, infected.get(k));
+//			 }
+//	     }
+		 Set<Integer> keys = infected.keySet();
+		 for(int k: keys){
+			 ArrayList<Node> adj = graph[k].friends;
+			 for(Node n: adj){
+				 int cost = infected.get(k);
+				 int newcost =0;
+				 if (nInfected.containsKey(n.name)) newcost = nInfected.get(n.name);
+				 nInfected.put(n.name, cost+newcost);
+			 }
+		 }
+//		 infected = (HashMap)nInfected.clone();
+		 infected = new HashMap<Integer, Integer>(nInfected);
+	 }
+	 int res = 0;
+	 for(int c: infected.values()) res+=c;
+	 System.out.println(res);
+ }
+}

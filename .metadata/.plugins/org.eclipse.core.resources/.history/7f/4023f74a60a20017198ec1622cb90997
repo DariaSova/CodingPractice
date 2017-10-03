@@ -1,0 +1,15 @@
+import java.util.*;
+
+public class Squawk {
+ public static void main(String[] args) {
+	 int UsersNum, linksNum, startUser, time; 
+	 
+	 Scanner sc = new Scanner(System.in);
+	 for(int i=0; i<4; i++){
+		 UsersNum =  sc.nextInt();
+		 linksNum = sc.nextInt();
+		 startUser = sc.nextInt();
+		 time = sc.nextInt(); 
+	 }
+ }
+}

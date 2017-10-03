@@ -1,0 +1,46 @@
+import java.util.*;
+
+public class TheGradonOfLoowater {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int next1 = sc.nextInt();
+		int next2 = sc.nextInt();
+		
+		while(next1!=0 && next2!=0){
+			int headsn = next1;
+			int knightsn = next2;
+			String fail = "Loowater is doomed!";
+			if(headsn>knightsn){
+				System.out.println(fail);
+
+			}else {
+			
+			int[] heads = new int[headsn];
+			int[] knights = new int[knightsn];
+			
+			for(int i=0; i<headsn; i++)
+				heads[i] = sc.nextInt();
+			
+			for(int i=0; i<knightsn; i++)
+				knights[i] = sc.nextInt();
+			
+			int gold=0;
+			Arrays.sort(heads);
+			Arrays.sort(knights);
+			
+			for(int j=0; j<headsn; j++){
+				if(knights[j] > heads[j]) gold++;
+				else{
+					System.out.println(fail);
+					break;
+				}
+			}
+			}
+			
+			next1 = sc.nextInt();
+			next2 = sc.nextInt();
+		}
+		sc.close();
+	}
+}

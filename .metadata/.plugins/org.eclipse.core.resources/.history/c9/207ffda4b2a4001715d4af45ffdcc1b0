@@ -1,0 +1,29 @@
+import java.util.*;
+
+public class Spaces {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int width = sc.nextInt();
+		int n = sc.nextInt();
+		int[] nums = new int[n];
+		Set<Integer> set = new HashSet<Integer>();
+		
+		for(int i=0; i<n; i++){
+			nums[i] = sc.nextInt();
+			set.add(nums[i]);
+		}
+		
+//
+//		for(int i=1; i<n; i++){
+//			nums[i] = nums[i];
+//		}
+		
+		for(int i=0; i<n; i++){
+			for(int j=n-1; j>i;j--){
+				set.add(nums[j]-nums[i]);
+			}
+		}
+		System.out.println(set);
+	}
+}

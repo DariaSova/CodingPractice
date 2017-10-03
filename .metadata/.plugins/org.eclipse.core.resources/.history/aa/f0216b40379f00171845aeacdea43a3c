@@ -1,0 +1,63 @@
+import java.util.*;
+
+public class Dates {
+
+	
+	static char[] parseDate(String s){
+		char [] format = s.toCharArray();
+		//char delimeter = '';
+		char[] order = new char[4];
+		int cnt = 1;
+		for(int i=0; i<format.length; i++){
+			if(format[i]=='y'){
+				order[cnt] = 'y';
+				cnt++;
+				i+=3;
+			} else if(format[i]=='d' || format[i]=='m'){
+				if(format[i]=='m') order[cnt] ='m';
+				order[cnt]='d';
+				cnt++;
+				i+=2;
+			}
+			else if(format[i]!='y'&&format[i]!='d'&&format[i]!='m'){
+				order[0] = format[i];
+			}
+		}
+		return order;
+	}
+	
+	public static void main(String[] args) {
+		//Scanner sc = new Scanner(System.in);
+		//String in = sc.nextLine();
+		String in ="2017-09-04 yyyy-mm-dd mm*yyyy*dd";
+		
+		String[] words = in.split(" ");
+		String date = words[0];
+		String currf = words[1];
+		String newf = words[2];
+		
+		char[] order1 = parseDate(currf);
+		char[] order2 = parseDate(newf);
+		
+		String[] nums = date.split(order1[0]+"");
+		
+		String[] res = new String[3];
+		
+		for(int i=1; i<order2.length;i++){
+			char curr = order2[i];
+			for(int j =1;j<3;j++){
+				if(order1[j]==curr){
+					res[i-1] = nums[j];
+				}
+			}
+				
+		}
+		
+		String f = String.join(order2[0]+"", res);
+		
+		System.out.println(f);
+			
+			
+		}
+	
+}

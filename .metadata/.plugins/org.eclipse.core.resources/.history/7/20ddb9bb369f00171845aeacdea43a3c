@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+public class Dates {
+
+	
+	char[] parseDate(String s){
+		char [] format = currf.toCharArray();
+		//char delimeter = '';
+		char[] order = new char[4];
+		int cnt = 1;
+		for(int i=0; i<format.length; i++){
+			if(char[i]=='y'){
+				char[cnt] = 'y';
+				cnt++;
+				i+=3;
+			} else if(char[i]=='d' || char[i]=='m'){
+				if(cha[i]=='m') char[cnt] ='m';
+				char[cnt]='d';
+				cnt++;
+				i+=2;
+			}
+			else if(char[i]!='y'&&char[i]!='d'&&char[i]!='m'){
+				delimeter = cha[i];
+			}
+		}
+		
+	}
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String in = sc.nextLine();
+		String[] words = in.split(" ");
+		String date = words[0];
+		String currf = words[1];
+		String newf = words[2];
+		
+		
+		
+			
+			
+			
+			
+		}
+	}
+}

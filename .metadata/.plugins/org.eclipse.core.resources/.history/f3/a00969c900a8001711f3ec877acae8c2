@@ -1,0 +1,11 @@
+
+public class Test {
+	
+	public static void main(String[] args) {
+		 double d= (9/2)+ 0.7;
+		 double k= (int) d;
+		 System.out.println(d);
+		System.out.println(k);
+	}
+
+}

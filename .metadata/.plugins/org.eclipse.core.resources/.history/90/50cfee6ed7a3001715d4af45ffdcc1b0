@@ -1,0 +1,39 @@
+import java.util.*;
+import java.math.*;
+
+
+public class TourDeFrance {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		
+		int nf = sc.nextInt();
+		int nr = sc.nextInt();
+		double[] rare = new double[nr];
+		double[] front = new double[nf];
+		
+		for(int i=0; i<nf; i++){
+			front[i] = sc.nextInt();
+		}
+		
+		for(int i=0; i<nr; i++){
+			rare[i] = sc.nextInt();
+		}
+		
+		double [] ratios = new double[nr*nf];
+		
+		for(int i=0; i<nr; i++){
+			for(int j=0; j<nf; j++){
+				ratios[i+j] = rare[i]/front[j];
+			}
+		}
+		Arrays.sort(ratios);
+		
+		double res = 0.0;
+		for(int i=1; i<ratios.length;i++){
+			double n = ratios[i]/ratios[i-1];
+			res = Math.max(res, n);
+		}
+		System.out.println(Math.round(res*100)/100);
+	}
+}
